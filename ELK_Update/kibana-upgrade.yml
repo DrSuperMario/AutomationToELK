@@ -1,0 +1,31 @@
+
+- name: Upgrade kibana
+  hosts: kibana
+  gather_facts: no
+  vars:
+    set_default_index: '{"changes":{"defaultIndex":"syslog"}}'
+
+  tasks:
+  - name: Validate ELK Version
+    fail: msg="Invalid ELK Version"
+    when: elk_version is undefined or not elk_version is match("\d+\.\d+\.\d+")
+
+  - name: Get kibana current version
+    command: rpm -q kibana --qf %{VERSION}
+    args:
+      warn: no
+    changed_when: False
+    register: version_found
+
+    
+  - name: Update kibana
+    yum:
+      name: kibana-{{ elk_version }}
+      state: present
+
+  - name: Restart kibana
+    systemd:
+      name: kibana
+      state: restarted
+      enabled: yes
+      daemon_reload: yes

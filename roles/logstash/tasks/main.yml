@@ -1,0 +1,36 @@
+#
+# Installing logstash
+
+# Install logstash
+
+- name: Install Logstash with apt
+  apt:
+   name: logstash
+   update_cache: yes
+ 
+# Configurations
+
+- name: Updating the config file to allow outside access
+  lineinfile:
+   destfile: /etc/logstash/logstash.yml
+   regexp: 'server.host:'
+   line: 'server.host: 0.0.0.0'
+
+- name: Defining server port
+  lineinfile:
+   destfile: /etc/logstash/logstash.yml
+   regexp: 'server.port:'
+   line: 'server.port: 5042'
+    
+- name: Defining Elasticsearch URL
+  lineinfile:
+   destfile: /etc/logstash/logstash.yml
+   regexp: 'elasticsearch.url:'
+   line: 'elasticsearch.url: "http://localhost:9200"'
+   
+# Starting Kibana
+
+- name: Starting Logstash
+  service:
+   name: logstash
+   state: started

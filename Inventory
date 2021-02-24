@@ -1,11 +1,10 @@
 [logstash]
-server01 ansible_host=10.0.0.1
+server01 ansible_host=localhost
 
 [kibana]
-server02 ansible_host=10.0.0.2
+server02 ansible_host=localhost
 
 [elasticsearch]
-server03 ansible_host=10.0.0.3
-server04 ansible_host=10.0.0.4
-server05 ansible_host=10.0.0.5
-
+server03 ansible_host=localhost
+server04 ansible_host=localhost
+server05 ansible_host=localhost

@@ -1,12 +1,13 @@
 
-- name: pre-download
-  import_playbook: pre-download.yml
-
-- name: logstash-upgrade
-  import_playbook: logstash-upgrade.yml
-
-- name: elasticsearch-rolling-upgrade
-  import_playbook: elasticsearch-rolling-upgrade.yml
-
-- name: kibana-upgrade
-  import_playbook: kibana-upgrade.yml
+---
+#
+# Playbook to install the ELK stack + Beats
+#
+- hosts: elkservers
+  remote_user: ubuntu
+  become: yes
+  become_user: root
+  roles:
+  - { role: kibana }
+  - { role: elasticsearch }
+  - { role: logstash }

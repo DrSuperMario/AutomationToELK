@@ -1,0 +1,5 @@
+
+- name: Elasticsearch rolling upgrade
+  hosts: elasticsearch
+  gather_facts: no
+  serial: 1

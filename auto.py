@@ -58,15 +58,18 @@ def load_playbook(user: str, yaml: str, inv: str) -> None:
   
     play = PlaybookExecutor(playbooks=[yaml], inventory=inventory, variable_manager=variable_manager, loader=load_data, passwords={})
 
-    try:
-        results = play.run()
-        pprint(results)
-    finally:
-        play.cleanup()
-        
+
+    results = play.run()
+    pprint(results)
+  
+
 if(__name__=="__main__"):
 
-    arguments = argparse.ArgumentParser(description="Enter params for Ansible Playbook")
+    arguments = argparse.ArgumentParser(description=
+            """
+            Enter params for Ansible Playbook
+            Usage is quit simple.
+            """)
     arguments.add_argument('--user', help='Add username to login')
     arguments.add_argument('--yaml', help='Add playbook yaml')
     arguments.add_argument('--inventory', help='Add invetory manager source')
