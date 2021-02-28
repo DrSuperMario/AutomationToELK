@@ -39,25 +39,25 @@ All the playbook conf is in auto.py in the immutableDict section.
 
 FileTree:
 
--roles
-    -elasticsearch
-        -tasks
+- roles
+    - elasticsearch
+        - tasks
             main.yml
-    -java
-        -tasks
+    - java
+        - tasks
             main.yml
-    -kibana
-        -tasks
+    - kibana
+        - tasks
             main.yml
-    -logstash
-        -tasks
+    - logstash
+        - tasks
             main.yml
-        -templates
+        - templates
             beats-input.conf.j2
-    -nginx
-        -tasks
+    - nginx
+        - tasks
             main.yml
-        -templates
+        - templates
             elasticsearch-output.conf.j2
             kibana.conf.j2
             kibanaAdmin.j2
