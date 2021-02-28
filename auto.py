@@ -1,29 +1,47 @@
+#####################################################
+#
+#             Python automation portion
+#       
+#             Libs: pprint, sys, argparse, ansible
+#               
+#             Date: 28/02/2021  
+#
+#             Created By: Mario Muuk  
+#
+#
+#####################################################
+
+
+
+
+
+#importing libs
 from pprint import pprint
-from datetime import datetime
-import os
 import sys
 import argparse
 
+#Check if python found Ansible 
 try:
-    from ansible import context
+    from ansible import context # type: ignore
 except ImportError:
     pprint("Ansible not installed...")
     sys.exit()
 
+#If ansible found the import all dependencie
 finally:
     pprint("Ansible found good luck...")
-    from ansible.cli import CLI
-    from ansible.module_utils.common.collections import ImmutableDict
-    from ansible.executor.playbook_executor import PlaybookExecutor
-    from ansible.parsing.dataloader import DataLoader
-    from ansible.inventory.manager import InventoryManager
-    from ansible.vars.manager import VariableManager
+    from ansible.cli import CLI # type: ignore
+    from ansible.module_utils.common.collections import ImmutableDict # type: ignore
+    from ansible.executor.playbook_executor import PlaybookExecutor # type: ignore
+    from ansible.parsing.dataloader import DataLoader # type: ignore
+    from ansible.inventory.manager import InventoryManager # type: ignore
+    from ansible.vars.manager import VariableManager # type: ignore
 
 
 def load_playbook(user: str, yaml: str, inv: str) -> None:
 
     """
-    Add users and initiate YAML playbook
+    Add user and initiate YAML playbook
     """
 
     load_data = DataLoader()
@@ -64,7 +82,11 @@ def load_playbook(user: str, yaml: str, inv: str) -> None:
   
 
 if(__name__=="__main__"):
+    """
 
+    Parse arguments that can be added to playbook
+    
+    """
     arguments = argparse.ArgumentParser(description=
             """
             Enter params for Ansible Playbook
